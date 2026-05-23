@@ -1,22 +1,25 @@
-// @ts-ignore
 import { MongoClient } from "mongodb";
+import { HOTELS } from "./HOTELS.ts";
 
-const mongoUrl = "mongodb://mongodb:27017/hoteldb";
+const mongoUrl = Deno.env.get("MONGO_URI");
+console.log({ mongoUrl });
 
-const client = new MongoClient(mongoUrl);
-// @ts-ignore
+const client = new MongoClient(mongoUrl!);
+// @ts-ignore:
 await client.connect();
 
 const db = client.db("hoteldb");
 
 export const hotelRepository = db.collection("hotels");
 // console.log("inserting ..")
-// await hotelRepository.insertOne({
-//   _id: 1,
-//   name: "Saxon",
-//   city: "New York",
-//   availableRooms: 10,
-// });
+(async (x) => {
+  if (x) return;
+
+  for await (const hotel of HOTELS) {
+    // @ts-ignore:
+    await hotelRepository.insertOne(hotel);
+  }
+})(false);
 
 export async function getHotelsByCity(city: string) {
   const result = await hotelRepository.find({ city }).toArray();
@@ -66,16 +69,18 @@ export async function book(bookingRequest: any, userId: string) {
 }
 
 export async function getHotelsByHotelId(hotelId: number) {
+  // @ts-ignore:
   const hotel = await hotelRepository.findOne({ _id: hotelId });
   return hotel;
 }
 
-// @ts-ignore
+// @ts-ignore:
 export async function updateAvailableRoomsByHotelId(
   hotelId: number,
   updatedRooms: number,
 ) {
   await hotelRepository.updateOne(
+    // @ts-ignore:
     { _id: hotelId },
     { $set: { availableRooms: updatedRooms } },
   );

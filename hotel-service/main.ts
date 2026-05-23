@@ -1,4 +1,10 @@
-import app from "./hotel_controller.ts";
-console.log("HEr ");
+import { createApp } from "./src/hotel_controller.ts";
 
-Deno.serve({ port: 8000 }, app.fetch);
+const main = () => {
+  console.log("Here");
+
+  const app = createApp();
+  Deno.serve({ port: 8000 }, app.fetch);
+};
+
+main();
