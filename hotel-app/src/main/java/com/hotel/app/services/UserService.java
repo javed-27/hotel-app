@@ -18,18 +18,17 @@ public class UserService {
     }
 
     public String createUser(String username, String password) {
-        User user = new User(username, password ,this.generateId());
-
-        User save = userRepo.save(user);
+        User user = new User(username, password, this.generateId());
+        userRepo.save(user);
         return this.getUserId(username, password);
     }
 
-    public String  getUserId(String username, String password){
+    public String getUserId(String username, String password) {
         User user = userRepo.getUserId(username, password);
         return user.getuserId();
     }
 
-    public String generateId(){
-        return  UUID.randomUUID().toString();
+    public String generateId() {
+        return UUID.randomUUID().toString();
     }
 }
