@@ -1,0 +1,19 @@
+info:
+  name: List Booking
+  type: http
+  seq: 6
+
+http:
+  method: get
+  url: http://localhost:3000/api/bookings
+  headers:
+    - name: Authorization
+      value: "Bearer "
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​

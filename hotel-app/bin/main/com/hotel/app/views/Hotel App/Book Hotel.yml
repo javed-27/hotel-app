@@ -1,0 +1,28 @@
+info:
+  name: Book Hotel
+  type: http
+  seq: 7
+
+http:
+  method: post
+  url: http://localhost:3000/api/bookings
+  headers:
+    - name: Authorization
+      value: "Bearer "
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "hotel_id": 1,
+        "rooms": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​

@@ -1,0 +1,55 @@
+  services:
+
+    user-service:
+      build:
+        context: ./User-services
+
+      environment:
+        SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/hoteldb
+
+      depends_on:
+        - mongodb
+
+      expose:
+        - "8080"
+
+    hotel-service:
+      build:
+       context: ./hotel-service
+
+      environment:
+       MONGO_URI: mongodb://mongodb:27017/hoteldb
+
+      depends_on:
+        - mongodb
+
+      expose:
+        - "8000"
+
+
+    mongodb:
+      image: mongo:7
+      container_name: mongodb
+
+      ports:
+        - "27017:27017"
+
+      volumes:
+        - mongo-data:/data/db
+
+    nginx:
+      image: nginx:latest
+      container_name: hotel-nginx
+
+      ports:
+        - "3000:80"
+
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+      depends_on:
+        - user-service
+        - hotel-service
+
+  volumes:
+    mongo-data:

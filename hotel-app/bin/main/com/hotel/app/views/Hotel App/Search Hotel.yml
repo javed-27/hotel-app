@@ -1,0 +1,20 @@
+info:
+  name: Search Hotel
+  type: http
+  seq: 1
+
+http:
+  method: get
+  url: http://localhost:3000/api/search/hotels?city=New%20York
+  params:
+    - name: city
+      value: New%20York
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​

@@ -1,0 +1,26 @@
+info:
+  name: sginin
+  type: http
+  seq: 4
+
+http:
+  method: post
+  url: http://localhost:3000/api/users/login
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "username": "testuser",
+        "password": "password123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​
