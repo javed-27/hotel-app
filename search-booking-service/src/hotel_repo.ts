@@ -22,7 +22,7 @@ export async function getHotelsByCity(city: string) {
 
   return result.map(({ name, availableRooms, city, _id }) => ({
     name,
-    availableRooms,
+    room: availableRooms,
     city,
     id: _id,
   }));

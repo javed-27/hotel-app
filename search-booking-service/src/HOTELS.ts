@@ -1,9 +1,12 @@
 export const HOTELS = [
-  { _id: 1, name: "Sackson", city: "New York", availableRooms: 10 },
-  { _id: 2, name: "Zeta", city: "New York", availableRooms: 8 },
-  { _id: 3, name: "America", city: "New York", availableRooms: 15 },
-  { _id: 4, name: "Fusion", city: "New York", availableRooms: 12 },
-  { _id: 5, name: "Hydra", city: "New York", availableRooms: 6 },
-  { _id: 6, name: "Quantum", city: "New York", availableRooms: 9 },
-  { _id: 7, name: "Phoenix", city: "New York", availableRooms: 14 },
+  { _id: 8, name: "Ocean View", city: "Los Angeles", availableRooms: 11 },
+  { _id: 9, name: "Sunrise Inn", city: "Los Angeles", availableRooms: 7 },
+
+  { _id: 10, name: "Royal Crown", city: "Chicago", availableRooms: 13 },
+  { _id: 11, name: "Lake Breeze", city: "Chicago", availableRooms: 5 },
+
+  { _id: 12, name: "Emerald Stay", city: "Miami", availableRooms: 16 },
+  { _id: 13, name: "Palm Resort", city: "Miami", availableRooms: 10 },
+
+  { _id: 14, name: "Golden Peak", city: "San Francisco", availableRooms: 8 },
 ];
