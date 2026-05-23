@@ -15,7 +15,7 @@ export const hotelRepository = db.collection("hotels");
     // @ts-ignore:
     await hotelRepository.insertOne(hotel);
   }
-})(false);
+})(true);
 
 export async function getHotelsByCity(city: string) {
   const result = await hotelRepository.find({ city }).toArray();
@@ -29,12 +29,12 @@ export async function getHotelsByCity(city: string) {
 }
 
 interface BookingRequest {
-  hotelId: number;
+  hotel_id: number;
   rooms: number;
 }
 
 export async function book(bookingRequest: BookingRequest, userId: string) {
-  const hotelId = bookingRequest.hotelId;
+  const hotelId = bookingRequest.hotel_id;
   const rooms = bookingRequest.rooms;
 
   const hotel = await getHotelsByHotelId(hotelId);

@@ -6,15 +6,15 @@ export function searchHotels(city: string) {
 }
 
 interface BookingRequest {
-  hotelId: number;
+  hotel_id: number;
   rooms: number;
 }
 
-export async function book(
-  bookingReq: BookingRequest,
-  userId: string,
-) {
-  const { hotelId, rooms } = bookingReq;
+export async function book(bookingReq: BookingRequest, userId: string) {
+  console.log({ bookingReq });
+
+  const { hotel_id: hotelId, rooms } = bookingReq;
+
   const hotel = await hotelRepo.getHotelsByHotelId(hotelId);
 
   const remainingRooms = hotel!.availableRooms - rooms;

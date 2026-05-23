@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import * as hotelService from "../src/hotel_service.ts";
+import { verifyJWT } from "./jwt.ts";
 
 export const createApp = () => {
   const app = new Hono();
@@ -8,9 +9,12 @@ export const createApp = () => {
   app.use(logger());
 
   app.post("/api/bookings", async (c) => {
-    const token = c.req.header("Authorization");
+    const [_bearer, token] = c.req.header("Authorization")!.split(" ");
     const bookingRequest = await c.req.json();
-    await hotelService.book(bookingRequest, token!);
+    const userId = await verifyJWT(token);
+
+    await hotelService.book(bookingRequest, userId?.sub!);
+
     return c.text("Successful booking");
   });
 
