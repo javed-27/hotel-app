@@ -1,0 +1,26 @@
+import { Hono } from "hono";
+import { logger } from "hono/logger";
+
+import * as hotelBooking from "./hotel_service.ts";
+
+export const createApp = () => {
+  const app = new Hono();
+  app.use(logger());
+
+  app.post("/api/bookings", async (c) => {
+    const token = c.req.header("Authorization");
+    const bookingRequest = await c.req.json();
+    await hotelBooking.book(bookingRequest, token);
+    return c.text("Successful booking");
+  });
+
+  app.get("/api/search/hotels", async (c) => {
+    const city = c.req.query("city");
+    const result = await hotelBooking.searchHotels(city);
+    return c.json(result);
+  });
+
+  app.get("/", (c) => c.json("hello"));
+
+  return app;
+};
