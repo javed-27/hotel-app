@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TalkToTsServer {
-    private final HotelService hotelService;
     private final BookingService bookingService;
-
     public TalkToTsServer(HotelService hotelService, BookingService bookingService) {
-        this.hotelService = hotelService;
         this.bookingService = bookingService;
     }
 

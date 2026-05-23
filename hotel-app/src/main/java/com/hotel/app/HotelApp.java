@@ -1,9 +1,8 @@
 package com.hotel.app;
 
-import com.hotel.app.repository.InMemory;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class HotelApp {
