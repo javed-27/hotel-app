@@ -1,4 +1,4 @@
-import { createApp } from "./hotel_controller.ts";
+import { createApp } from "./src/hotel_controller.ts";
 
 const main = () => {
   const app = createApp();

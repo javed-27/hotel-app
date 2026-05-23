@@ -2,13 +2,10 @@ import { MongoClient } from "mongodb";
 import { HOTELS } from "./HOTELS.ts";
 
 const mongoUrl = Deno.env.get("MONGO_URI");
-console.log({ mongoUrl });
-
 const client = new MongoClient(mongoUrl!);
 
 await client.connect();
 const db = client.db("hoteldb");
-
 export const hotelRepository = db.collection("hotels");
 
 (async (x) => {
@@ -69,17 +66,16 @@ export async function book(bookingRequest: BookingRequest, userId: string) {
 
 export async function getHotelsByHotelId(hotelId: number) {
   // @ts-ignore:
-  const hotel = await hotelRepository.findOne({ _id: hotelId });
-  return hotel;
+  return await hotelRepository.findOne({ _id: hotelId });
 }
 
 export async function updateAvailableRoomsByHotelId(
   hotelId: number,
-  updatedRooms: number,
+  roomCount: number,
 ) {
   await hotelRepository.updateOne(
     // @ts-ignore:
     { _id: hotelId },
-    { $set: { availableRooms: updatedRooms } },
+    { $set: { availableRooms: roomCount } },
   );
 }

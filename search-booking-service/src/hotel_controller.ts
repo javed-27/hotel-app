@@ -1,7 +1,5 @@
-// @ts-ignore:
 import { Hono } from "hono";
 import { logger } from "hono/logger";
-// @ts-ignore:
 import * as hotelService from "../src/hotel_service.ts";
 
 export const createApp = () => {
