@@ -1,8 +1,5 @@
-import { createClient } from "redis";
+import { client } from "./redis_services.ts";
 
-const client = createClient({ url: Deno.env.get("CACHE_URL") });
-
-await client.connect();
 type HotelType = {
   name: string;
   rooms: number;

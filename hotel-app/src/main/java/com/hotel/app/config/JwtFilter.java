@@ -38,10 +38,13 @@ public class JwtFilter extends OncePerRequestFilter {
         String token = authHeader.split(" ")[1];
         System.out.println("THE TOKEN");
         System.out.println("---".repeat(10));
-
         System.out.println(token);
         System.out.println("---".repeat(10));
         String userId = JwtUtil.getUserId(token);
+        System.out.println("---".repeat(10));
+        System.out.println(userId + "CREATED");
+        System.out.println("---".repeat(10));
+
         UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

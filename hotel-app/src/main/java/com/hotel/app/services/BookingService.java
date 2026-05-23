@@ -2,10 +2,8 @@ package com.hotel.app.services;
 
 import com.hotel.app.repository.BookingRepository;
 import com.hotel.app.views.BookingRecord;
-import com.hotel.app.views.BookingRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -16,11 +14,15 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
-    public List<BookingRecord> getBookingsByUSerId(String userId) {
-        return bookingRepository.getBookingsByUserId(userId);
+    public List<BookingRecord> getBookingsByUserId(String userId) {
+        System.out.println("before calling anything ");
+        System.out.println("|||".repeat(10));
+        List<BookingRecord> bookingsByUserId = bookingRepository.findByUserId(userId);
+        return bookingsByUserId;
     }
 
-    public String buildPdf(List<BookingRecord> bookings) {
-        return "";
+    public byte[] buildPdf(String key) {
+
+        return "Some reciept we got here".getBytes();
     }
 }

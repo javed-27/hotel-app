@@ -20,12 +20,12 @@ public class DownloadPdfController {
     }
 
     @GetMapping("/api/bookings/{userId}/receiptreceipt.pdf")
-    public ResponseEntity<String> downloadPdf(@PathVariable String userId) {
-        List<BookingRecord> bookingsByUserId = bookingService.getBookingsByUSerId(userId);
-        String pdf = bookingService.buildPdf(bookingsByUserId);
+    public ResponseEntity<byte[]> downloadPdf(@PathVariable String userId) {
+//        List<BookingRecord> bookingsByUserId = bookingService.getBookingsByUserId(userId);
+        String key = "pdf:%s".formatted(userId);
 
-        return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).header(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=receiptreceipt.pdf").body(pdf);
+        byte[] bytes = bookingService.buildPdf(key);
+
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_PDF).header(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=receiptreceipt.pdf").body(bytes);
     }
-
-
 }

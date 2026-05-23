@@ -18,6 +18,8 @@ export async function book(bookingReq: BookingRequest, userId: string) {
   const hotel = await hotelRepo.getHotelsByHotelId(hotelId);
 
   const remainingRooms = hotel!.availableRooms - rooms;
-  await hotelRepo.book(bookingReq, userId);
+  const bookingRecord = await hotelRepo.book(bookingReq, userId);
   await hotelRepo.updateAvailableRoomsByHotelId(hotelId, remainingRooms);
+
+  return bookingRecord;
 }

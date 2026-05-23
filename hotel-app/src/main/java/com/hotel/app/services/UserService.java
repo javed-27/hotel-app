@@ -25,6 +25,10 @@ public class UserService {
 
     public String getUserId(String username, String password) {
         User user = userRepo.getUserId(username, password);
+        System.out.println("\n\n");
+        System.out.println(user.getuserId());
+        System.out.println("\n\n");
+
         return user.getuserId();
     }
 

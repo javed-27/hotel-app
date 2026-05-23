@@ -23,6 +23,7 @@ public class JwtUtil {
 
     public static String getUserId(String token) {
         Claims claims = decodeToken(token);
+
         return (claims.getSubject());
     }
 }

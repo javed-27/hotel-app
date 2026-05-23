@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class AuthController {
     private final UserService users;
@@ -28,5 +27,4 @@ public class AuthController {
 
         return JwtUtil.generateToken(userId);
     }
-
 }
